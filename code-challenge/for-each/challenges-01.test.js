@@ -61,18 +61,13 @@ Return the modified array.
 
 const removeOne = (num, arr) => {
   // Solution code here...
-  for(let i = 0; i < length.arr; i--){
-    if( i % 3 === 2);
-    arr =  arr[i];
-  }
-  return arr;
-
+  if( num % 3 === 2) arr.pop();
 };
 
 const removeElements = (arr, callback) => {
   // Solution code here...
-  for (let i = length.arr; i > 0;  i++){
-    arr =  callback(arr[i]);
+  for (let i = 0; i < arr.length;  i++){
+    callback(arr[i], arr);
   }
   return arr;
 };
@@ -84,9 +79,7 @@ Write a function named removeWithForEach that produces the same output as challe
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithForEach = (arr, callback) => {
-  for (let i = length.arr;  i >0; i--){
-    arr =  callback(arr[i]);
-  }
+  arr.forEach(num => callback(num, arr));
   return arr;
   // Solution code here...
 };
@@ -104,6 +97,12 @@ This anonymous function should accept up to three arguments: the element, the in
 
 const removeWithAnon = (arr) => {
   // Solution code here...
+  arr.forEach((element) => {
+    if(element % 3 === 2 ){
+      arr.pop();
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -125,13 +124,13 @@ This function should use forEach to populate your grocery list based on the stor
 
 const createList = (availableItems) => {
   // Solution code here...
-  for (let i = 0; i < length.array; i++){
-    for(let j = 0; j < length.array; j++){
-      array = array[j];
-
+  const list = [];
+  availableItems.forEach(item => {
+    if(item.available){
+      list.push(item.name);
     }
-
-  }
+  });
+  return list;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -150,19 +149,19 @@ Return the resulting output array.
 
 const fizzbuzz = (arr) => {
   // Solution code here...
-  arr = [];
-  for(let i = 1; i < 16; i++){
-    if( i % 3 === 0){
-      arr.push('Fizz');
-    }else if( i % 5 === 0) {
-      arr.push('Buzz');
-    } else if (i % 3 === 0 && i % 5 === 0){
-      arr.push('Fizz Buzz');
+  let array = [];
+  arr.forEach(Number => {
+    if( Number % 15 === 0){
+      array.push('Fizz Buzz');
+    }else if( Number % 5 === 0) {
+      array.push('Buzz');
+    } else if (Number % 3 === 0 ){
+      array.push('Fizz');
     }else {
-      arr.push(i);
+      array.push(Number);
     }
-    //return  result;
-  }
+  });
+  return array;
 };
 
 /* ------------------------------------------------------------------------------------------------
