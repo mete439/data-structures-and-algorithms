@@ -39,10 +39,8 @@ Write a function named sortByLength that takes in an array of strings and return
 
 const sortByLength = (arr) => {
   // Solution code here...
-  return arr.sort((a , b) => {
-    return a.length > b.length;
+  return arr.sort((a , b) => a.length - b.length);
 
-  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -55,10 +53,10 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 
 const alphabetizeBetter = (arr) => {
   // Solution code here...
-  return arr.sort((a, b) => {
-    return (a.toUpperCase() > b.toUpperCase());
-  });
+  return arr.sort((a, b) => a.toUpperCase() > b.toUpperCase() ? 1 : (a.toUpperCase() < b.toUpperCase() ? -1 : 0));
 };
+
+//
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -75,9 +73,7 @@ Here is an example of the input:
 
 const sortByPrice = (arr) => {
   // Solution code here...
-  return arr.sort((a , b) =>{
-    return a.price > b.price;
-  });
+  return arr.sort((a , b) => a.price > b.price);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,15 +86,8 @@ For example, [1, 14, 0.2, -281, 54782] is only correctly sorted in that order.
 
 const sortNumbersByLength = (arr) => {
   // Solution code here...
-  return arr.sort((a, b) => {
-    if(a > b){
-      return 1;
-    }
-    if(a < b){
-      return -1;
-    }
-    return 0;
-  });
+  return arr.sort((a, b) => a.toString().length > b.toString().length);
+
 };
 
 /*-----------------------------------------------------------------------------------------------
@@ -186,7 +175,7 @@ CHALLENGE 10 - Stretch Goal
 
 This challenge should use the array of meetings from challenge 9, above.
 
-Sort the meetings in the order that they start. If two meetings start at the same time on the same day, the shorter meeting should come first.
+Sort the meetings in the ord er that they start. If two meetings start at the same time on the same day, the shorter meeting should come first.
 
 You DO NOT need to use your solution to Challenge 9 in completing Challenge 10.
 ------------------------------------------------------------------------------------------------ */
@@ -194,12 +183,16 @@ You DO NOT need to use your solution to Challenge 9 in completing Challenge 10.
 const sortSchedule = (arr) => {
   // Solution code here...
   return arr.sort((a, b) => {
-    if( a.start > b.start){
-      return 1;
-    }
     if(a.start === b.start && a.dayOfWeek === b.dayOfWeek ){
       return  a.end - b.end;
     }
+    if( a.start > b.start){
+      return 1;
+    }
+    if(a.dayOfWeek > b.dayOfWeek && a.start > b.start && a.end > b.end){
+      return 1;
+    }
+
   });
 };
 
