@@ -91,7 +91,13 @@ For example, [1, 14, 0.2, -281, 54782] is only correctly sorted in that order.
 const sortNumbersByLength = (arr) => {
   // Solution code here...
   return arr.sort((a, b) => {
-    return a.length < b.length;
+    if(a > b){
+      return 1;
+    }
+    if(a < b){
+      return -1;
+    }
+    return 0;
   });
 };
 
@@ -133,14 +139,16 @@ If two people have the same full name, the younger one should come first. Do not
 const sortPeopleBetter = (arr) => {
   // Solution code here...
   return arr.sort((a, b) => {
-
-    if (a.lastName === b.lastName){
-      return a.firstName > b.firstName;
+    if(a.lastName > b.lastName){
+      return 1;
     }
-    else if (( a.lastName === b.lastName ) && ( a.firstName === b.firstName ) ) {
-      return a.age > b.age;
-    }else
-      return  a.lastName > b.lastName;
+    if(a.firstName > b.firstName){
+      return 1;
+    }
+    if( a.lastName === b.lastName && a.firstName === b.firstName){
+      return a.age - b.age;
+
+    }
   });
 };
 
@@ -186,10 +194,11 @@ You DO NOT need to use your solution to Challenge 9 in completing Challenge 10.
 const sortSchedule = (arr) => {
   // Solution code here...
   return arr.sort((a, b) => {
-    if((a.start === b.start) && (a.dayOfWeek === b.dayOfWeek)){
-      return ((a.end - a.start) > (b.end - b.start));
-    }else {
-      return a.start > b.start;
+    if( a.start > b.start){
+      return 1;
+    }
+    if(a.start === b.start && a.dayOfWeek === b.dayOfWeek ){
+      return  a.end - b.end;
     }
   });
 };
