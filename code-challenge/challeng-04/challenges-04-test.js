@@ -14,11 +14,7 @@ For example:
 
 const isNum = (input) => {
   // Solution code here...
-<<<<<<< HEAD
-  let comparison = /[0-9]/g;
-=======
-  let comparison = (/[0-9]/);
->>>>>>> 3fd507340b6042510c8c1c72c2bd5ab81f869f0a
+  let comparison = /[0-9]/gm;
   return comparison.test(input);
 };
 
@@ -32,13 +28,6 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
-<<<<<<< HEAD
-  let capitalization = /[A-Z][a-zA-Z]*/g;
-  let capitals = str.match(capitalization);
-
-  return capitals;
-=======
->>>>>>> 3fd507340b6042510c8c1c72c2bd5ab81f869f0a
 };
 
 /* ------------------------------------------------------------------------------------------------
