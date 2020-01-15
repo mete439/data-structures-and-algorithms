@@ -28,9 +28,10 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
-  let capitalization = /[A-Z]\w+/gm;
-  return str.match(capitalization) || [];
-  // return str.match(/[A-Z]\w+/gm) || [];
+  let capitalization = /[A-Z][a-zA-Z]*/g;
+  let capitals = str.match(capitalization);
+
+  return capitals;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -41,12 +42,6 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 
 const citiesAtoJ = (arr) => {
   // Solution code here...
-  let  cities = /^[A-J]/;
-  let results = [];
-  arr.forEach(city => {
-    if(cities.test(city)) results.push(city);
-  });
-  return results;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -63,8 +58,6 @@ Do not use the vertical bar (pipe) in your pattern.
 
 const matchMonth = (input) => {
   // Solution code here...
-  let monthPattern = /^[Oo]ct(ober)?$/;
-  return monthPattern.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -79,8 +72,6 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 
 const noPunctuation = str => {
   // Solution code here...
-  let spacePattern = /\w+\s/gi;
-  return str.match(spacePattern);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -97,8 +88,6 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 
 let hangman = (str) => {
   // Solution code here...
-  let results = /[a|e|i|o|u]/gi;
-  return str.replace (results,'_');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -115,8 +104,6 @@ const seashells = 'She sells seashells by the seashore. The shells she sells are
 
 const findShells = (str) => {
   // Solution code here...
-  let patern = /\b([A-Za-z]*ells)\b/gm;
-  return str.match(patern);
 };
 
 /* ------------------------------------------------------------------------------------------------
