@@ -83,16 +83,19 @@ const gruffaloCrumble = {
 
 
 const listFoods = (recipe) => {
-  let result1 = [];
+  // let result1 = [];
   let result = [];
   // Solution code here...
-  for(let i = 0; i < recipe.length; i++ ){
-    let index = recipe.indexof(i);
-    if(index > -1){
-      result1.push(recipe.slice(index, 0));
-    }
-    result.push(result1.slice(index, 1));
+  for(let i = 0; i < recipe.length + 1; i++ ){
+    result.push(recipe.slice(i));
   }
+  //   let index = recipe.indexof(i);
+  //   if(index > -1){
+  //     result1.push(recipe.slice(index, 0));
+  //   }
+  //   result.push(result1.slice(index, 1));
+  // }
+
   return result;
 };
 
@@ -108,7 +111,7 @@ const splitFoods = (recipe) => {
   let result = [];
   // Solution code here...
   for(let i = 0; i < recipe.length; i++){
-    let splite = recipe.split('', i);
+    let splite = recipe.split('', 2);
     result.push(splite);
   }
   return result;
@@ -127,7 +130,10 @@ Return a new array containing just the verbs. For example, ['Mix until evenly di
 const stepActions = (recipe) => {
   let result = [];
   // Solution code here...
-
+  for( let i = 0; i < recipe.length; i++){
+    let actionv = recipe[i].splice(' ');
+    result.push(actionv[0]);
+  }
   return result;
 };
 
@@ -176,15 +182,16 @@ const removeLastCharacters = (str, numberOfCharacters) => {
   // Solution code here...
   let result = [];
   if(str.length > numberOfCharacters){
-    result.push(str.splice(str.length, numberOfCharacters));
+    result =  str.slice(0, str.length - numberOfCharacters);
   }
   if(str.length < numberOfCharacters){
-    result.push('', numberOfCharacters);
+    result = ('');
   }
   if(numberOfCharacters < 0){
-    result.push(str, numberOfCharacters);
-
+    result =  str.slice(0, str.length + 1);
   }
+  return result;
+
 };
 
 
@@ -195,11 +202,13 @@ Write a function named totalSumCSV that, given a string of comma-separated value
 ------------------------------------------------------------------------------------------------ */
 
 const totalSumCSV = (str) => {
-  let total = 0;
+
   // Solution code here...
   //   let splitStr = str.split('');
-  for (let i = 0; i < str.length ; i++) {
-    total = + str[i];
+  let strArr = str.split(',');
+  let total = 0;
+  for (let i = 0; i < strArr.length; i++) {
+    total += parseInt(strArr[i]);
   }
   return total;
 };
@@ -215,6 +224,12 @@ For example, removeVowels('gregor') returns 'grgr'.
 
 const removeVowels = (str) => {
   // Solution code here...
+  if(/[aeiouyAEIOUY]/.test(str)){
+    str = '';
+  } else {
+    return str;
+  }
+  //join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -229,7 +244,9 @@ Similarly, extractVowels('The quick brown fox') returns ['Th qck brwn fx', 'eioo
 
 const extractVowels = (str) => {
   // Solution code here...
+
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
@@ -267,13 +284,13 @@ describe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return a list of foods', () => {
     expect(splitFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return a list of recipe steps', () => {
     expect(stepActions(gruffaloCrumble)).toStrictEqual(['Pre-heat', 'De-prickle', 'Sprinkle', 'Mix', 'Grease', 'Combine', 'Fold', 'Spread', 'Bake']);
     expect(stepActions(gruffaloCrumble).length).toStrictEqual(9);
@@ -316,7 +333,7 @@ describe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should return the string without vowels', () => {
     expect(removeVowels('gregor')).toStrictEqual('grgr');
     expect(removeVowels('gregor').length).toStrictEqual(4);
