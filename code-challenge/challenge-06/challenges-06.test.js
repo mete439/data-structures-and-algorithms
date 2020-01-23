@@ -93,13 +93,14 @@ hasChildrenValues(characters, 'Cersei') will return true
 hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
-const hasChildrenValues = (arr, characters) => {
+const hasChildrenValues = (arr, character) => {
   // Solution code here...
   for (let i = 0; i < arr.length; i++){
-    if(Object.values(characters) === 'Cersei'){
+    let character = arr[i].children;
+    if(Object.values(characters) === character){
       return true;
     }
-    else if(Object.values(characters) === 'Sansa'){
+    else {
       return false;
     };
   };
@@ -113,13 +114,13 @@ Write a function named hasChildrenEntries that is similar to your hasChildrenVal
 The input and output of this function are the same as the input and output from challenge 3.
 ------------------------------------------------------------------------------------------------ */
 
-const hasChildrenEntries = (arr, characters) => {
+const hasChildrenEntries = (arr, character) => {
   // Solution code here...;
   for(let i = 0; i < arr.length; i++){
     let entries = Object.entries(characters);
-    if(entries[2][1] === 'Cersei'){
+    if(entries[i][1] === character[i].children){
       return true;
-    }else if(entries[2][1] === 'Sansa'){
+    }else { //if(entries[i][1] === 'Sansa'){
       return false;
     };
   };
