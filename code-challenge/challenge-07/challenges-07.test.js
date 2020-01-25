@@ -85,7 +85,7 @@ const evenOdd = (arr) => {
     }
     if(element % 2 !== 0){
       return 'odd';
-    }if(element === 'hhh'){
+    }if(element !== Number){
       return 'N/A';
     }
   });
@@ -136,6 +136,7 @@ const snorlaxAbilities = {
 
 const extractAbilities = (arr) => {
   // Solution code here...
+
 };
 
 /* ------------------------------------------------------------------------------------------------
