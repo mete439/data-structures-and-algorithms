@@ -28,6 +28,9 @@ For example, filterStringsWithVowels('gregor','hound','xyz') returns ['gregor', 
 
 const filterStringsWithVowels = (arr) => {
   // Solution code here...
+  const vawol = /[aeiou]/
+  return arr.filter(str => vawol.test(str));
+  // return result;
   
 };
 
@@ -42,12 +45,13 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 
 const notInFirstArray = (forbiddenValues, arr) => {
   // Solution code here...
+  return  arr.filter(Element => !forbiddenValues.includes(Element));
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
-Write a function named getBaseStatGreaterThan that, given the snorlaxData, below, and an integer as input, uses filter to return an array containing all stats with a baseStat greater than the integer.
+  Write a function named getBaseStatGreaterThan that, given the snorlaxData, below, and an integer as input, uses filter to return an array containing all stats with a baseStat greater than the integer.
 
 For example, getBaseStatGreaterThan(snorlaxData.stats, 50) will return an array containing the 'special-defense' and 'special-attack' objects.
 ------------------------------------------------------------------------------------------------ */
@@ -85,6 +89,7 @@ const snorlaxData = {
 
 const getBaseStatGreaterThan = (arr, minBaseStat) => {
   // Solution code here...
+  return arr.filter(e => e.baseStat > minBaseStat);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -97,6 +102,7 @@ For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 
 
 const getStatName = (arr, minBaseStat) => {
   // Solution code here...
+  return arr.filter(e => e.baseState > minBaseStat);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -184,7 +190,7 @@ describe('Testing challenge 1', () => {
   });
 });
 
-xdescribe('Testing challenge 2', () => {
+  describe('Testing challenge 2', () => {
   test('It should return an array containing only words that have vowels', () => {
     expect(filterStringsWithVowels(['gregor','hound','xyz'])).toStrictEqual(['gregor', 'hound']);
     expect(filterStringsWithVowels(['gregor','hound','xyz']).length).toStrictEqual(2);
@@ -197,7 +203,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   const firstNums = [1, 2, 3];
   const secondNums = [1, 2, 3, 4];
 
@@ -221,7 +227,7 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return an array containing the stats that are greater than the input', () => {
     expect(getBaseStatGreaterThan(snorlaxData.stats, 75)).toStrictEqual([ { stat: { url: 'https://pokeapi.co/api/v2/stat/5/', name: 'special-defense' }, effort: 2, baseStat: 110 } ]);
     expect(getBaseStatGreaterThan(snorlaxData.stats, 75).length).toStrictEqual(1);
@@ -232,7 +238,7 @@ xdescribe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return the name of the stats that exceed that maximum', () => {
     expect(getStatName(snorlaxData.stats, 50)).toStrictEqual([ 'special-defense', 'special-attack' ]);
     expect(getStatName(snorlaxData.stats, 50).length).toStrictEqual(2);
