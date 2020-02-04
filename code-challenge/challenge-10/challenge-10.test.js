@@ -13,15 +13,17 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 
 const count = (target, input) => {
   // Solution code here...
-  let inputs = '';
-  for( let i = 0; i <= input.length - 1; i++){
-     for(let j = 0; j <= input[i].length - 1; j++){
+  let counts = 0;
+  input.forEach(arr =>{
+    arr.forEach(ele =>{
+      if(target === ele){
+        counts++;
 
-      inputs += input[i][j];
-     }
-     return inputs.length;
-  }
-  
+      }
+    });
+
+  });
+  return counts
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,12 +39,12 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 const totalSum = (input) => {
   // Solution code here...
   let sum = 0;
-  for( let i = 0; i < Array.length; i++){
-    for(let j = 0; j < Array[i].length; j++){
-      sum +=Array[i][j];
-    }
-    return sum
-  }
+  input.forEach(arr => {
+    sum = sum + arr.reduce((accomulator, currentVal) =>{
+      return accomulator + currentVal;
+    }, 0);
+  });
+  return sum;
 };
 
 /* ------------------------------------------------------------------------------------------------
