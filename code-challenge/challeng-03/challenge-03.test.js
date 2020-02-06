@@ -133,7 +133,7 @@ const sortPeopleBetter = (arr) => {
     }
     if(a.firstName > b.firstName){
       return 1;
-    }
+    } 
     if( a.lastName === b.lastName && a.firstName === b.firstName){
       return a.age - b.age;
 
