@@ -21,27 +21,32 @@ const isNum = (input) => {
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
-Write a function named isCapitalized that takes in a string. This function should use a regular expression pattern to match all words that begin with a capital letter. It should only match words, not punctuation.
+Write a function named isCapitalized that takes in a string. This function should use a regular expression pattern to match all words that begin with a capital regex. It should only match words, not punctuation.
 
 Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
 
 const isCapitalized = (str) => {
   // Solution code here...
-  let capitalization = /[A-Z][a-zA-Z]*/g;
-  let capitals = str.match(capitalization);
-
-  return capitals;
+  let capitalization = /[A-Z][a-zA-Z]*/gm;
+  return str.match(capitalization);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
-Write a function named citiesAtoJ that takes in an array of city names and uses a regular expression pattern to return a new array containing any cities that begin with the letters A through J, inclusive.
+Write a function named citiesAtoJ that takes in an array of city names and uses a regular expression pattern to return a new array containing any cities that begin with the regexs A through J, inclusive.
 ------------------------------------------------------------------------------------------------ */
 
 const citiesAtoJ = (arr) => {
   // Solution code here...
+  const newArr = [];
+  arr.forEach(letters => {
+    if(/^[A-J]\w+/gm.test(letters)){
+      newArr.push(letters);
+    }  
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -58,6 +63,8 @@ Do not use the vertical bar (pipe) in your pattern.
 
 const matchMonth = (input) => {
   // Solution code here...
+  let regex = /^[oO]ct(ober)?$/;
+  return regex.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -72,6 +79,8 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 
 const noPunctuation = str => {
   // Solution code here...
+  let regex = /\w+\s+/mg;
+  return str.match(regex);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -88,6 +97,7 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 
 let hangman = (str) => {
   // Solution code here...
+  return str.replace(/[aeiou]/gmi, '_');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -97,7 +107,7 @@ Write a function named findShells that takes in the string below and uses a regu
 
 Do not use the vertical bar (pipe) character.
 
-Hint: All of these words end with the letters "ells".
+Hint: All of these words end with the regexs "ells".
 ------------------------------------------------------------------------------------------------ */
 
 const seashells = 'She sells seashells by the seashore. The shells she sells are surely seashells. So if she sells shells on the seashore, I\'m sure she sells seashore shells.';
@@ -132,10 +142,10 @@ describe('Testing challenge 1', () => {
 });
 
 describe('Testing challenge 2', () => {
-  test('It should only return words that begin with a capital letter', () => {
-    const capitalResult = isCapitalized('We only want to Return the Words that begin With a capital Letter');
+  test('It should only return words that begin with a capital regex', () => {
+    const capitalResult = isCapitalized('We only want to Return the Words that begin With a capital regex');
 
-    expect(capitalResult).toStrictEqual([ 'We', 'Return', 'Words', 'With', 'Letter' ]);
+    expect(capitalResult).toStrictEqual([ 'We', 'Return', 'Words', 'With', 'regex' ]);
     expect(capitalResult.length).toStrictEqual(5);
 
     expect(isCapitalized('Given by our hand in the meadow that is called Runnymede, between Windsor and Staines, on the fifteenth day of June in the seventeenth year of our reign (i.e. 1215: the new regnal year began on 28 May).')).toStrictEqual(['Given', 'Runnymede', 'Windsor', 'Staines', 'June', 'May']);
@@ -147,7 +157,7 @@ describe('Testing challenge 2', () => {
 describe('Testing challenge 3', () => {
   let cities = ['Cleveland', 'San Diego', 'Birmingham', 'Seattle', 'Miami', 'New York City', 'Omaha', 'Portland', 'Austin', 'Boston', 'Newport Beach', 'Hoboken'];
 
-  test('It should return the cities whose names begin with the letters A through J', () => {
+  test('It should return the cities whose names begin with the regexs A through J', () => {
     expect(citiesAtoJ(cities)).toContain('Cleveland', 'Birmingham', 'Austin', 'Boston', 'Hoboken');
     expect(citiesAtoJ(cities).length).toStrictEqual(5);
 
@@ -155,7 +165,7 @@ describe('Testing challenge 3', () => {
     expect(citiesAtoJ(['Albuquerque', 'Chicago', 'Philadelphia', 'Newark', 'Sacramento', 'Eugene'])).toEqual(expect.arrayContaining(['Albuquerque', 'Chicago', 'Eugene']));
   });
 
-  test('It should not return the cities whose names begin with the letters K through Z', () => {
+  test('It should not return the cities whose names begin with the regexs K through Z', () => {
     expect(citiesAtoJ(cities)).not.toContain('San Diego', 'Seattle', 'Miami', 'New York City', 'Omaha', 'Portland', 'Newport Beach');
   });
 });
@@ -200,7 +210,7 @@ describe('Testing challenge 6', () => {
     expect(hangman('I wAnt them all tO bE removed and replaced with Underscores.')).toStrictEqual('_ w_nt th_m _ll t_ b_ r_m_v_d _nd r_pl_c_d w_th _nd_rsc_r_s.');
   });
 
-  test('It should not contain the letters "a", "e", "i", "o", or "u"', () => {
+  test('It should not contain the regexs "a", "e", "i", "o", or "u"', () => {
     expect(hangman(startString)).not.toContain('a', 'e', 'i', 'o', 'u');
   });
 });
