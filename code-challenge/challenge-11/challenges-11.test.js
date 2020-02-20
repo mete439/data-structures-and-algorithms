@@ -35,7 +35,7 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 
 const validateEmail = (email) => {
   // Solution code here...
-   if (/\w+(|(\.)\w+)(\@)(\w+)?(\.com|\.net|\.org)$/.test(email)){
+   if (/\w+(|(\.)\w+)(\@)(\w+)?(\.com|\.net|\.org)$/gmi.test(email)){
       return true;    
   } else{
     return false;

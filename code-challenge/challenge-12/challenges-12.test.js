@@ -24,11 +24,11 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
-  let columnVal = new Array(cookieStores.length).fill(0);
-  for(let i=0; i <= cookieStores.length - 1 ; i++){
-    for(let j=0; j <= cookieStores[i].length - 1 ; j++){
-         let value = cookieStores[i][j];
-       columnVal[j] += value;
+  let columnVal = new Array(stores.length).fill(0);
+  for(let i=0; i <= stores.length - 1 ; i++){
+    for(let j=0; j <= stores[i].length - 1 ; j++){
+         let value = stores[i][j];
+       columnVal[j] = columnVal[j] + value;
     }
   }
 return columnVal;
@@ -46,6 +46,10 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   // Solution code here...
+  hours.forEach((value, i) => {
+
+    
+  });
 
 };
 
@@ -103,6 +107,18 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  return numbers.map(arr =>{
+    if(arr.length > 0){
+     return  arr.reduce((acc , cur) =>{
+        return acc*cur;
+      })
+    } else {
+      return 1;
+    }
+  }).reduce((acc, cur) => {
+
+    return acc*cur;
+  })
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -123,6 +139,9 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+  return weather.map(arr =>{
+
+  })
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -144,6 +163,19 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  let weeklyAve = weather.map(arr =>{
+    return arr.reduce((acc, cur) => {
+      return acc + cur;
+    })/arr.length;
+  });
+  let lowestAve = weeklyAve.reduce((acc, cur) =>{
+    if(acc > cur){
+      return cur;
+    }else{
+      return acc;
+    }
+  })
+  return lowestAve;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -160,6 +192,7 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 
 const excel = (str) => {
   // Solution code here...
+  let strN = str.split('\n')
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -227,7 +260,7 @@ xdescribe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should multiply all the numbers together', () => {
     expect(calculateProduct([[1,2], [3,4], [5,6]])).toStrictEqual(720);
   });
@@ -246,7 +279,7 @@ xdescribe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return the lowest weekly average temperature within the data set', () => {
     expect(lowestWeeklyAverage(weeklyTemperatures)).toStrictEqual(57);
     expect(lowestWeeklyAverage(lowestWeeklyTemperatureData)).toStrictEqual(46);
