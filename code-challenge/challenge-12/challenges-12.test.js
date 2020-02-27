@@ -46,6 +46,14 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   // Solution code here...
+  let result = [];
+  hours.forEach((values, i) => {
+    let sales = {};
+    sales['sales'] = `${data[i]} cookies`;
+    sales['time'] = hoursOpen[i];
+    result.push(sales); 
+  });
+  return result
 
 };
 
@@ -69,6 +77,15 @@ const errands = [
 
 const howManyTreats = (arr) => {
   // Solution code here...
+  for( let i =0; i , arr.length; i++){
+    if(arr[i].store === 'Pet store'){
+      for(let j = 0; j < arr[i].items.length; j++){
+        if(arr[i].items[j].name === 'Treats'){
+          return arr[i].items[j].quantity;
+        }
+      }
+    }
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -91,6 +108,10 @@ The top row of the board is considered row zero and row numbers increase as they
 
 const battleship = (board, row, col) => {
   //  Solution code here...
+  if(board[row][col] === '#'){
+    return 'hit';
+  }
+  return 'miss';
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -103,6 +124,17 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  return numbers.map(arr =>{
+    if(arr.length > 0){
+      return arr.reduce((acc, cur) => {
+        return acc * cur;
+      });
+    } else {
+      return 1;
+    }
+  }).reduce((acc, cur) => {
+    return acc * cur;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -123,6 +155,13 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+  return weather.map( arr => {
+    return arr.reduce((acc, cur) => {
+      return acc + cur;
+    })/arr.length;
+  }).reduce((acc, cur) => {
+    return acc + cur;
+  })/weather.length;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -144,6 +183,20 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  let weeklyAvg = weather.map(arr => {
+    return arr.reduce((acc, cur) =>{
+      return acc + cur;
+    })/arr.length;
+  });
+  let lowestWeeklyAverage = weeklyAvg.reduce((acc, cur) => {
+    if( acc > cur){
+      return cur;
+    } else {
+      return acc;
+    }
+  });
+  return lowestWeeklyAverage;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -202,13 +255,13 @@ describe('Testing challenge 2', () => {
 });
 
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return the number 24', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   const battleshipData = [
     ['#', ' ', '#', ' '],
     ['#', ' ', '#', ' '],
@@ -227,7 +280,7 @@ xdescribe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should multiply all the numbers together', () => {
     expect(calculateProduct([[1,2], [3,4], [5,6]])).toStrictEqual(720);
   });
@@ -240,13 +293,13 @@ xdescribe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should calculate and return the average temperature of the data set', () => {
     expect(averageDailyTemperature(weeklyTemperatures)).toStrictEqual(60.25);
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return the lowest weekly average temperature within the data set', () => {
     expect(lowestWeeklyAverage(weeklyTemperatures)).toStrictEqual(57);
     expect(lowestWeeklyAverage(lowestWeeklyTemperatureData)).toStrictEqual(46);
